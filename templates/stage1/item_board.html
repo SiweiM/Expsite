@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Item board</title>
+</head>
+<body>
+{% if error_message %}
+<strong>{{ error_message }}</strong>
+{% endif %}
+<h1>Items need to do</h1>
+{% for useritem in useritems %}
+    {% if not useritem.done %}
+        <a href="{% url 'item_detail' useritem.item.id %}">Item{{ useritem.item.id }}</a>
+        <p></p>
+    {% endif %}
+{% endfor %}
+<h1>Items already done</h1>
+{% for useritem in useritems %}
+    {% if useritem.done %}
+        <a href="{% url 'item_detail' useritem.item.id %}">Item{{ useritem.item.id }}</a>
+        <p></p>
+    {% endif %}
+{% endfor %}
+</body>
+</html>
